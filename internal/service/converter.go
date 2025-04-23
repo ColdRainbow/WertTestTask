@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"net/url"
 	"strconv"
-	"strings"
 	"time"
 )
 
@@ -44,8 +43,6 @@ func NewConverterService(token string) *converterService {
 }
 
 func (s *converterService) Convert(ctx context.Context, from, to string, amount float64) (float64, error) {
-	from = strings.ToUpper(from)
-	to = strings.ToUpper(to)
 	url := s.baseUrl.JoinPath("v2", "tools", "price-conversion")
 	values := url.Query()
 	values.Add("symbol", from)
